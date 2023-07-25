@@ -5,7 +5,7 @@
 <a href="https://github.com/RoDDy18/velte/blob/main/LICENSE">
     <img src="https://github.com/RoDDy18/create-velte-app/blob/main/logo/velte-cli.png?raw=true" alt="velte cli logo" width="500"><br><br>
 </a>&nbsp;
-<a href="https://www.npmjs.com/velte">
+<a href="https://www.npmjs.com/create-velte-app">
     <img src="https://img.shields.io/npm/v/create-velte-app.svg?logo=npm&logoColor=fff&label=NPM+package&color=limegreen" alt="velte cli on npm" />
 </a>&nbsp;
 </p>
