@@ -1,0 +1,37 @@
+{
+  "name": "velte-vite-starter",
+  "version": "1.0.0",
+  "description": "Velte starter kit powered by vite",
+  "scripts": {
+    "dev": "vite",
+    "build": "rm -rf dist && vite build",
+    "lint": "eslint . --ext .js,.jsx",
+    "lint:fix": "eslint . --ext .js,.jsx --fix"
+  },
+  "dependencies": {
+    "commander": "^10.0.0",
+    "valtio": "^1.10.5",
+    "velte": "^1.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/plugin-transform-arrow-functions": "^7.22.5",
+    "@babel/plugin-transform-react-jsx": "^7.22.5",
+    "@babel/plugin-transform-runtime": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "@egoist/tailwindcss-icons": "^1.1.0",
+    "@iconify-json/uil": "^1.1.4",
+    "@originjs/vite-plugin-commonjs": "^1.0.3",
+    "autoprefixer": "^10.4.14",
+    "babel-plugin-import": "^1.13.6",
+    "babel-plugin-jsx-control-statements": "^4.1.2",
+    "babel-plugin-loop-optimizer": "^1.4.1",
+    "babel-plugin-macros": "^3.1.0",
+    "eslint": "^8.37.0",
+    "eslint-plugin-react": "^7.32.2",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.3.1",
+    "vite": "^4.2.1",
+    "vite-plugin-babel": "^1.1.3"
+  }
+}
