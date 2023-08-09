@@ -31,14 +31,21 @@ export async function createVelteProject(options) {
     ...options,
     targetDirectory: options.targetDirectory || process.cwd(),
   }
+
+    let templateDir
+
+    if(options.version === "Velte v1"){
+        templateDir = path.resolve(__dirname, '../templates/v1', options.template.toLowerCase())
+    }else{
+        templateDir = path.resolve(__dirname, '../templates/v2', options.template.toLowerCase())
+    }
   
-  const templateDir = path.resolve(__dirname, '../templates', options.template.toLowerCase())
   options.templateDirectory = templateDir
 
   try {
       await access(templateDir, fs.constants.R_OK)
   } catch (err) {
-      console.error('%s Invalid template name', chalk.red.bold('ERROR'))
+      console.error(chalk.red.bold('\nERROR'), 'Invalid template name, available options are:', chalk.yellow.bold('[webpack, rspack, vite]'))
       process.exit(1)
   }
 
@@ -64,6 +71,8 @@ export async function createVelteProject(options) {
 
   await tasks.run()
 
-  console.log('%s Project ready', chalk.green.bold('DONE'))
+  console.log(chalk.green.bold('\nDONE'), 'Project ready\n')
+  console.log('To serve your application, run the command:', chalk.yellow.bold('$ npm run dev'))
+  console.log('To build your application, run the command:', chalk.yellow.bold('$ npm run build'))
   return true
 }

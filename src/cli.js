@@ -1,5 +1,6 @@
 import arg from "arg"
 import inquirer from "inquirer"
+import chalk from "chalk"
 import { createVelteProject } from "./main"
 
 function parseArgumentsIntoOptions(rawArgs) {
@@ -84,19 +85,32 @@ function decideTemplate(options){
 
 async function promptForMissingOptions(options) {
     const defaultTemplate = 'webpack';
+    const defaultVersion = 'Velte v1';
     if (options.skipPrompts) {
       return {
         ...options,
         template: options.template || defaultTemplate,
+        version: options.template || defaultVersion,
       }
     }
    
     const questions = [];
+
+    if (!options.version) {
+      questions.push({
+        type: 'list',
+        name: 'version',
+        message: 'Choose a version of Velte.js you would like to use for your project',
+        choices: ['Velte v1', 'Velte v2 (rc)'],
+        default: defaultVersion,
+      })
+    }
+
     if (!options.template) {
       questions.push({
         type: 'list',
         name: 'template',
-        message: 'Please choose which project template to use',
+        message: 'Choose a build tool for compiling and bundling your project',
         choices: ['webpack', 'rspack', 'vite'],
         default: defaultTemplate,
       })
@@ -124,7 +138,7 @@ async function promptForMissingOptions(options) {
         questions.push({
           type: 'confirm',
           name: 'enableStateManagment',
-          message: 'Add Valtio for state managment?',
+          message: 'Configure global state managment? (Valtio for v1, VelX for v2)',
           default: false,
         })
     }
@@ -151,6 +165,7 @@ async function promptForMissingOptions(options) {
     return {
       ...options,
       template: options.template || answers.template,
+      version: options.version || answers.version,
       git: options.git || answers.git,
       enableSPA: options.enableSPA || answers.enableSPA,
       enableStateManagment: options.enableStateManagment || answers.enableStateManagment,
@@ -160,8 +175,9 @@ async function promptForMissingOptions(options) {
 }
 
 export async function cli(args){
-    let options = parseArgumentsIntoOptions(args)
-    options = await promptForMissingOptions(options)
-    options = decideTemplate(options)
-    createVelteProject(options)
+  console.log(chalk.hex("#784CE5").bold("\nVelte.js - The Cordial Javascript UI Framework.\n"))
+  let options = parseArgumentsIntoOptions(args)
+  options = await promptForMissingOptions(options)
+  options = decideTemplate(options)
+  createVelteProject(options)
 }
